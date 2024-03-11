@@ -10,6 +10,10 @@ def hello_monitor():
     allxposts = load_all_xposts_from_db
     return render_template('home.html', posts=allxposts,company_name='Somewa')
 
+@app.route("/xpostchart")
+def chart():
+    return render_template('chart.html')
+
 @app.route("/xposts")
 def hello_monitor():
     dayposts = load_yesterday_xposts_from_db
