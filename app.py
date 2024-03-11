@@ -12,7 +12,7 @@ def hello_monitor():
 
 @app.route("/xpostchart")
 def chart():
-    return render_template('chart.html')
+    return render_template('xpostchart.html')
 
 @app.route("/xposts")
 def hello_monitor():
