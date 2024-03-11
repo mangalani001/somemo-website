@@ -1,6 +1,8 @@
 from sqlalchemy import create_engine, Table, Column, text, String, MetaData, Integer, Computed
+import os
 
-db_connection_string = "postgresql://fptdbqoy:G63T9sjGPWorNpmbpPGY91hXeCLBKe9-@bubble.db.elephantsql.com/fptdbqoy"
+#db_connection_string = "postgresql://fptdbqoy:G63T9sjGPWorNpmbpPGY91hXeCLBKe9-@bubble.db.elephantsql.com/fptdbqoy"
+db_connection_string = os.environ['DB_CONNECTION_STRING']
 
 engine = create_engine(db_connection_string)
 
