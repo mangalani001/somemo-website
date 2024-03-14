@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Chart.js example</title>
+  </head>
+<div>
+  <div style="width: 500px; height: 500px;"><canvas id="myChart"></canvas></div>
+  </div>
+   
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Mangalani','Victor', 'Mavhungu', 'Ramaano'],
+        datasets: [{
+          label: 'Weekly X Stars!',
+          data: [12, 19, 3, 5, 2, 3, 10, 7, 8, 14],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+
+  </html>
+  
