@@ -65,6 +65,10 @@ def chart_example():
 def chart_test():
     return render_template('test.html')
 
+@app.route("/charttwitter")
+def chart_x():
+    return render_template('twitter.html')
+
 @app.route("/chartbase")
 def chart_base():
     return render_template('base.html')

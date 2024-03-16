@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+
+{% block submain %}
+<main class="content px-3 py-2">
+    <div class="container-fluid">
+        <div class="mb-3">
+             <h3>Social Media Watch</h3>
+             <span></span>   
+             <span></span>  
+             <span></span>
+             <h3>Top Trending Today!</h3>                     
+         </div>
+
+         <div class="row row-cols-auto">
+            <div class="col"><h2>Chart 1 - {}</h2>
+                <canvas id="myChart1" width="200" height="200"></canvas>
+            </div>
+            <div class="col"><h2>Chart 2 - {}</h2>
+                <canvas id="myChart2" width="200" height="200"></canvas>
+            </div>
+            <div class="col"><h2>Chart 3 - {}</h2>
+                <canvas id="myChart3" width="200" height="200"></canvas>
+            </div>
+            <div class="col"><h1><h2>Chart 4 - {}</h2>
+                <canvas id="myChart4" width="200" height="200"></canvas>
+            </div>
+    </div>
+</main>
+{% endblock %}
+
+(% block app_scripts)
+<script>
+    const ctx1 = document.getElementById('myChart1').getContext('2d');
+    const myChart1 = new Chart(ctx1, {
+        type: '{{ chart1Type }}',
+        data: {
+            labels: [{% for chart1User in chart1Users %}
+                    '{{ chart1User }}',
+                {% endfor %}],
+            datasets: [{
+                label: '{{ chart1Name }}',
+                data: [{% for chart1Post in chart1XpostsCount %}
+                    {{ chart1Post }},
+                {% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+
+    
+    const ctx2 = document.getElementById('myChart2').getContext('2d');
+    const myChart2 = new Chart(ctx2, {
+        type: '{{ chart2Type }}',
+        data: {
+            labels: [{% for chart2User in chart2Users %}
+                    '{{ chart2User }}',
+                {% endfor %}],
+            datasets: [{
+                label: '{{ chart2Name }}',
+                data: [{% for chart2Post in chart2XpostsCount %}
+                    {{ chart2Post }},
+                {% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });   
+    
+    const ctx3 = document.getElementById('myChart3').getContext('2d');
+    const myChart3 = new Chart(ctx3, {
+        type: '{{ chart3Type }}',
+        data: {
+            labels: [{% for chart3User in chart3Users %}
+                    '{{ chart3User }}',
+                {% endfor %}],
+            datasets: [{
+                label: '{{ chart3Name }}',
+                data: [{% for chart3Post in chart3XpostsCount %}
+                    {{ chart3Post }},
+                {% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });    
+    
+    const ctx4 = document.getElementById('myChart4').getContext('2d');
+    const myChart4 = new Chart(ctx4, {
+        type: '{{ chart4Type }}',
+        data: {
+            labels: [{% for chart4User in chart4Users %}
+                    '{{ chart4User }}',
+                {% endfor %}],
+            datasets: [{
+                label: '{{ chart4Name }}',
+                data: [{% for chart4Post in chart4XpostsCount %}
+                    {{ chart4Post }},
+                {% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });      
+</script>
+(% endblock)
