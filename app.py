@@ -61,6 +61,14 @@ def hello_monitor():
 def chart_example():
     return render_template('chartexample.html')
 
+@app.route("/charttest")
+def chart_test():
+    return render_template('test.html')
+
+@app.route("/chartbase")
+def chart_base():
+    return render_template('base.html')
+
 
 #_field can be any of these
 #  comments_count 
