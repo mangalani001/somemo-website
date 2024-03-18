@@ -6,24 +6,10 @@
     box-sizing: border-box;
 }
 
-span9 {
-    min-height: 40px;
-}
-
-hr { 
-    display: block;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    margin-left: auto;
-    margin-right: auto;
-    border-style: inset;
-    border-width: 1px;
-  } 
-
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    background-color: #F8F8F8;  
+    background-image: url("https://codzsword.github.io/bootstrap-sidebar/background-image.jpg");
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: cover;
@@ -31,7 +17,7 @@ body {
 
 h3 {
     font-size: 1.2375rem;
-    color: #1E90FF;
+    color: #FFF;
 }
 
 a {
@@ -80,7 +66,7 @@ li {
 }
 
 .sidebar-logo a {
-    color: #1E90FF;
+    color: #e9ecef;
     font-size: 1.25rem;
     font-weight: 600;
 }
@@ -90,14 +76,14 @@ li {
 }
 
 .sidebar-header {
-    color: #1E90FF;
+    color: #e9ecef;
     font-size: .75rem;
     padding: 1.5rem 1.5rem .375rem;
 }
 
 a.sidebar-link {
     padding: .625rem 1.625rem;
-    color: #1E90FF;
+    color: #e9ecef;
     position: relative;
     display: block;
     font-size: 1rem;

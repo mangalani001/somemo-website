@@ -6,16 +6,24 @@ Twitter Activities
 {% endblock %}
 
 {% block submain %}
-<main class="content px-3 py-2">
-    <div class="container-fluid">
-        <div class="mb-3">
-             <h3>Social Media Watch</h3>
-             <span></span>   
-             <span></span>  
-             <span></span>
-             <h3>Top Trending Today!</h3>                     
-         </div>
 
+<main class="content px-3 py-2">
+    <hr>
+    <div class="container-fluid">
+        <div class="row" style="min-height: fit-content;" >
+            <div class="mb-3" style="background-color: #E5E4E2;">
+                
+                <h3>Social Media Watch: Top Trending!</h3>
+                <hr>
+                <span></span> 
+                <p> Test this sis sto see hor big is the container</p>  
+                <p> Test this sis sto see hor big is the container</p>  
+                <p> Test this sis sto see hor big is the container</p>    
+                <span></span>
+                                  
+            </div>
+        </div>
+        <hr> 
          <div class="row row-cols-auto">
             <div class="col"><h2>Chart 1 - {}</h2>
                 <canvas id="myChart1" width="200" height="200"></canvas>
@@ -26,7 +34,7 @@ Twitter Activities
             <div class="col"><h2>Chart 3 - {}</h2>
                 <canvas id="myChart3" width="200" height="200"></canvas>
             </div>
-            <div class="col"><h1><h2>Chart 4 - {}</h2>
+            <div class="col"><h2>Chart 4 - {}</h2>
                 <canvas id="myChart4" width="200" height="200"></canvas>
             </div>
     </div>
