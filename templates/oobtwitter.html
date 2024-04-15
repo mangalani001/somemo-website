@@ -2,47 +2,58 @@
 <!--{% import 'bootstrap/wtf.html' as wtf %}-->
 
 {% block title %}
-Title
+Twitter Activities
 {% endblock %}
 
-{% block app_context %}
-<div class="row">
-    <div class="col-md-4">        
-        <h2>Results 1</h2>
-        <canvas id="myChart" width="200" height="200"></canvas>
-    </div>
-    <div class="col-md-4">
-        <h2>Results 2</h2>
-        <canvas id="myChart1" width="200" height="200"></canvas>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-4">        
-        <h2>Results 3</h2>
-        <canvas id="myChart2" width="200" height="200"></canvas>
-    </div>
-    <div class="col-md-4">
-        <h2>Results 4</h2>
-        <canvas id="myChart3" width="200" height="200"></canvas>
-    </div>
-</div>
+{% block submain %}
 
+<main class="content px-3 py-2">
+    <hr>
+    <div class="container-fluid">
+        <div class="row" style="min-height: fit-content;" >
+            <div class="mb-3" style="background-color: #E5E4E2;">
+                
+                <h3>Social Media Watch: Top Trending!</h3>
+                <hr>
+                <span></span> 
+                <p> Test this sis sto see hor big is the container</p>  
+                <p> Test this sis sto see hor big is the container</p>  
+                <p> Test this sis sto see hor big is the container</p>    
+                <span></span>
+                                  
+            </div>
+        </div>
+        <hr> 
+         <div class="row row-cols-auto">
+            <div class="col"><h2>Chart 1 - {}</h2>
+                <canvas id="myChart1" width="200" height="200"></canvas>
+            </div>
+            <div class="col"><h2>Chart 2 - {}</h2>
+                <canvas id="myChart2" width="200" height="200"></canvas>
+            </div>
+            <div class="col"><h2>Chart 3 - {}</h2>
+                <canvas id="myChart3" width="200" height="200"></canvas>
+            </div>
+            <div class="col"><h2>Chart 4 - {}</h2>
+                <canvas id="myChart4" width="200" height="200"></canvas>
+            </div>
+    </div>
+</main>
 {% endblock %}
 
-{% block app_scripts %}
-{{ super() }}
+(% block app_scripts)
 <script>
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: '{{ dashboardtype }}',
+    const ctx1 = document.getElementById('myChart1').getContext('2d');
+    const myChart1 = new Chart(ctx1, {
+        type: '{{ chart1Type }}',
         data: {
-            labels: [{% for user in replies[3] %}
-                    '{{ user }}',
+            labels: [{% for chart1User in chart1Users %}
+                    '{{ chart1User }}',
                 {% endfor %}],
             datasets: [{
-                label: '{{ dashboardname }}',
-                data: [{% for val in replies[4] %}
-                    {{ val }},
+                label: '{{ chart1Name }}',
+                data: [{% for chart1Post in chart1XpostsCount %}
+                    {{ chart1Post }},
                 {% endfor %}],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -72,17 +83,18 @@ Title
         }
     });
 
-    const ctx_ = document.getElementById('myChart1').getContext('2d');
-    const myChart1 = new Chart(ctx_, {
-        type: '{{ dashboardtype }}',
+    
+    const ctx2 = document.getElementById('myChart2').getContext('2d');
+    const myChart2 = new Chart(ctx2, {
+        type: '{{ chart2Type }}',
         data: {
-            labels: [{% for user in reposts[3]%}
-                    '{{ user }}',
+            labels: [{% for chart2User in chart2Users %}
+                    '{{ chart2User }}',
                 {% endfor %}],
             datasets: [{
-                label: '{{ dashboardname }}',
-                data: [{% for val in reposts[4] %}
-                    {{ val }},
+                label: '{{ chart2Name }}',
+                data: [{% for chart2Post in chart2XpostsCount %}
+                    {{ chart2Post }},
                 {% endfor %}],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -112,17 +124,17 @@ Title
         }
     });   
     
-    const ctx__ = document.getElementById('myChart2').getContext('2d');
-    const myChart2 = new Chart(ctx__, {
-        type: '{{ dashboardtype }}',
+    const ctx3 = document.getElementById('myChart3').getContext('2d');
+    const myChart3 = new Chart(ctx3, {
+        type: '{{ chart3Type }}',
         data: {
-            labels: [{% for user in likes[3] %}
-                    '{{ user }}',
+            labels: [{% for chart3User in chart3Users %}
+                    '{{ chart3User }}',
                 {% endfor %}],
             datasets: [{
-                label: '{{ dashboardname }}',
-                data: [{% for val in likes[4] %}
-                    {{ val }},
+                label: '{{ chart3Name }}',
+                data: [{% for chart3Post in chart3XpostsCount %}
+                    {{ chart3Post }},
                 {% endfor %}],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -152,17 +164,17 @@ Title
         }
     });    
     
-    const ctx___ = document.getElementById('myChart3').getContext('2d');
-    const myChart3 = new Chart(ctx___, {
-        type: '{{ dashboardtype }}',
+    const ctx4 = document.getElementById('myChart4').getContext('2d');
+    const myChart4 = new Chart(ctx4, {
+        type: '{{ chart4Type }}',
         data: {
-            labels: [{% for user in views[3] %}
-                    '{{ user }}',
+            labels: [{% for chart4User in chart4Users %}
+                    '{{ chart4User }}',
                 {% endfor %}],
             datasets: [{
-                label: '{{ dashboardname }}',
-                data: [{% for val in views[4] %}
-                    {{ val }},
+                label: '{{ chart4Name }}',
+                data: [{% for chart4Post in chart4XpostsCount %}
+                    {{ chart4Post }},
                 {% endfor %}],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -190,7 +202,7 @@ Title
                 }
             }
         }
-    });    
-  
+    });      
 </script>
-{% endblock %}
+(% endblock)
+

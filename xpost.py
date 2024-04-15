@@ -40,7 +40,22 @@ def load_xposts_users_between_dates_from_db(startdate,enddate):
         for row in result.all():
             posts.append(row['xpost_day'])
         return sorted(posts)   
-    
+
+def load_records_from_chart_table(chartType, sinceDate, untilDate):
+  with engine.connect() as conn:
+    result = conn.execute(text("SELECT * FROM chart WHERE charttype = :ctype AND period BETWEEN :since AND :until"), {'ctype':chartType, 'since':sinceDate, 'until':untilDate})
+    posts = []
+    for row in result.all():
+      posts.append(row)
+    return posts 
+
+def load_records_day_top_ten(sinceDate):
+  with engine.connect() as conn:
+    result = conn.execute(text("SELECT tag,concat(left(xpost_content,40), '...','View in X'),url,views FROM xpost WHERE xpost_day = :since ORDER BY views DESC LIMIT 10"), {'since':sinceDate})
+    posts = []
+    for row in result.all():
+      posts.append(row)
+    return posts    
 
 def load_all_xposts_from_db():
     with engine.connect() as conn:

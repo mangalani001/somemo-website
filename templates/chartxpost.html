@@ -2,46 +2,67 @@
 <!--{% import 'bootstrap/wtf.html' as wtf %}-->
 
 {% block title %}
+{{ super() }}
 Title
 {% endblock %}
 
-{% block app_context %}
-<div class="row">
-    <div class="col-md-4">        
-        <h2>Results 1</h2>
-        <canvas id="myChart" width="200" height="200"></canvas>
+{% block submain %}
+{{ super() }}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-8 col-lg-2 mb-3">
+            <h5>Guides</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="/docs/5.0/getting-started/">Getting started mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm</a></li>
+              <li class="mb-2"><a href="/docs/5.0/examples/starter-template/">Starter template</a></li>
+              <li class="mb-2"><a href="/docs/5.0/getting-started/webpack/">Webpack ==============================================</a></li>
+              <li class="mb-2"><a href="/docs/5.0/getting-started/parcel/">Parcel</a></li>
+            </ul>
+          </div>
     </div>
-    <div class="col-md-4">
-        <h2>Results 2</h2>
-        <canvas id="myChart1" width="200" height="200"></canvas>
+</div>        
+
+<div class="row">
+    <div class="col-md-6">        
+        <h3 class="hh3">X Replies </h3>
+        <canvas id="myChart" width="400" height="400"></canvas>
+    </div>   
+    <div class="col-md-6">
+        <h3 class="hh3">X Reposts</h3>
+        <canvas id="myChart1" width="400" height="400"></canvas>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-4">        
-        <h2>Results 3</h2>
-        <canvas id="myChart2" width="200" height="200"></canvas>
-    </div>
-    <div class="col-md-4">
-        <h2>Visualize 4</h2>
-        <canvas id="myChart3" width="200" height="200"></canvas>
+    <div class="col-md-6">        
+        <h3 class="hh3">X Likes</h3>
+        <canvas id="myChart2" width="400" height="400"></canvas>
+    </div>   
+    <div class="col-md-6">
+        <h3 class="hh3">X Views </h3>
+        <canvas id="myChart3" width="400" height="400"></canvas>
     </div>
 </div>
+
 
 {% endblock %}
 
 {% block app_scripts %}
+{{ super() }}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const ctx = document.getElementById('myChart').getContext('2d');
+
+const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
         type: '{{ dashboardtype }}',
         data: {
-            labels: [{% for user in users %}
+            labels: [{% for user in replies[3] %}
                     '{{ user }}',
                 {% endfor %}],
             datasets: [{
-                label: '{{ dashboardname }}',
-                data: [{% for post in xpostscount %}
-                    {{ post }},
+                label: 'Replies: {{ period }}',
+                data: [{% for val in replies[4] %}
+                    {{ val }},
                 {% endfor %}],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -70,19 +91,19 @@ Title
             }
         }
     });
+  
 
-    
-    const ctx_ = document.getElementById('myChart1').getContext('2d');
+const ctx_ = document.getElementById('myChart1').getContext('2d');
     const myChart1 = new Chart(ctx_, {
         type: '{{ dashboardtype }}',
         data: {
-            labels: [{% for user in users %}
+            labels: [{% for user in reposts[3]%}
                     '{{ user }}',
                 {% endfor %}],
             datasets: [{
-                label: '{{ dashboardname }}',
-                data: [{% for post in xpostscount %}
-                    {{ post }},
+                label: 'Reposts: {{ period }}',
+                data: [{% for val in reposts[4] %}
+                    {{ val }},
                 {% endfor %}],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -116,13 +137,13 @@ Title
     const myChart2 = new Chart(ctx__, {
         type: '{{ dashboardtype }}',
         data: {
-            labels: [{% for user in users %}
+            labels: [{% for user in likes[3] %}
                     '{{ user }}',
                 {% endfor %}],
             datasets: [{
-                label: '{{ dashboardname }}',
-                data: [{% for post in xpostscount %}
-                    {{ post }},
+                label: 'Likes: {{ period }}',
+                data: [{% for val in likes[4] %}
+                    {{ val }},
                 {% endfor %}],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -156,13 +177,13 @@ Title
     const myChart3 = new Chart(ctx___, {
         type: '{{ dashboardtype }}',
         data: {
-            labels: [{% for user in users %}
+            labels: [{% for user in views[3] %}
                     '{{ user }}',
                 {% endfor %}],
             datasets: [{
-                label: '{{ dashboardname }}',
-                data: [{% for post in xpostscount %}
-                    {{ post }},
+                label: 'Views: {{ period  }}',
+                data: [{% for val in views[4] %}
+                    {{ val }},
                 {% endfor %}],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -190,6 +211,6 @@ Title
                 }
             }
         }
-    });      
+    });   
 </script>
 {% endblock %}

@@ -1,0 +1,323 @@
+{% extends 'base.html' %}
+<!--{% import 'bootstrap/wtf.html' as wtf %}-->
+
+{% block breadcrumb %}
+{{ super() }}
+Twitter - Charts below showing the highest posts, by top users, on {{period}}.
+{% endblock%}
+
+{% block main %}
+{{ super() }}
+
+<div class="row">
+    <div class="col-sm-2"> 
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              View Stats: Select Day
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='0')}}">{{periods[0]}}</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='1')}}">{{periods[1]}}</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='2')}}">{{periods[2]}}</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='3')}}">{{periods[3]}}</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='4')}}">{{periods[4]}}</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='5')}}">{{periods[5]}}</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='6')}}">{{periods[6]}}</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='7')}}">{{periods[7]}}</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='8')}}">{{periods[8]}}</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='9')}}">{{periods[9]}}</a></li>
+            </ul>
+          </div>  
+    </div>
+
+    <div class="col-sm-10 top-posts"> 
+        <div class="marquee">
+            <p class="marquee-ft">X Top Accounts to Follow: {{users}} </p>
+        </div>
+
+    </div>    
+</div>
+
+<div class="row">
+    <div class="col-sm-12"> 
+        
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4"> 
+        <div class="card" style="width: 26rem;">
+            <img src="/../static/images/X.png" class="card-img-top" alt="Twitter">
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+              <p class="card-text">AI-Media's Watch/Monitor service grants access to the most influential social media accounts in South Africa (SA), collectively amassing over 30 million daily impressions/engagements. These accounts are carefully chosen based on post frequency and the resulting impressions.
+
+                Our monitoring bots concentrate solely on accounts that maintain a minimum of 4 posts per day and at least 30 posts per week.
+                
+                Scroll down to explore a myriad of statistics and comparisons for these posts.</p>
+              
+            </div>
+          </div>
+
+               
+    </div>
+    <div class="col-md-4 top-posts"> 
+        <h4 class="h4-medium">X Soldiers</h4> 
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/../static/images/ChrisExcel102.png" class="d-block w-100" alt="ChrisExcel102">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/../static/images/PhilMphela.png" class="d-block w-100" alt="PhilMphela">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/../static/images/Am_Blujay.png" class="d-block w-100" alt="Am_Blujay">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/../static/images/lavidaNOTA.png" class="d-block w-100" alt="lavidaNOTA">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/../static/images/destinyzee.png" class="d-block w-100" alt="destinyzee">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/../static/images/Miz_Ruraltarain.png" class="d-block w-100" alt="Miz_Ruraltarain">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/../static/images/goolammv.png" class="d-block w-100" alt="goolammv">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/../static/images/HermaineM.png" class="d-block w-100" alt="HermaineM">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/../static/images/Solphendukaa.png" class="d-block w-100" alt="Solphendukaa">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/../static/images/Musa_Khawula.png" class="d-block w-100" alt="Musa_Khawula">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/../static/images/GodPenuel.png" class="d-block w-100" alt="GodPenuel">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/../static/images/NalaThokozane.png" class="d-block w-100" alt="NalaThokozane">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/../static/images/Ori_RSA.png" class="d-block w-100" alt="Ori_RSA">
+                  </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>        
+    </div>
+    <div class="col-md-4">        
+        <h4 class="h4-medium">{{period}} Top Posts</h4>
+        <ol class="list-group list-group-numbered top-posts">
+            {% for item in toptenposts %}
+            <li class="list-group-item d-flex justify-content-between align-items-start handle-smallonly">
+              <div  class="ms-2 me-auto handle-small">
+                <div class="handle-small handle-bold">{{item[0]}}</div>
+                <a href={{item[2]}} target="_blank" rel="noopener noreferrer">{{item[1]}}</a>
+              </div>
+              <span class="badge text-bg-primary rounded-pill">{{item[3]}}</span>
+            </li>
+            {% endfor %}
+          </ol>
+    </div>   
+    
+</div>
+
+<div class="row">
+    <div class="col-md-6">        
+        <h3 class="hh3">Replies </h3>
+        <canvas id="myChart" width="200" height="200"></canvas>
+    </div>   
+    <div class="col-md-6">
+        <h3 class="hh3">Reposts</h3>
+        <canvas id="myChart1" width="200" height="200"></canvas>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">        
+        <h3 class="hh3">Likes</h3>
+        <canvas id="myChart2" width="200" height="200"></canvas>
+    </div>   
+    <div class="col-md-6">
+        <h3 class="hh3">Views </h3>
+        <canvas id="myChart3" width="200" height="200"></canvas>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block app_scripts %}
+{{ super() }}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: '{{ dashboardtype }}',
+        data: {
+            labels: [{% for user in replies[3] %}
+                    '{{ user }}',
+                {% endfor %}],
+            datasets: [{
+                label: 'Replies: {{ period }}',
+                data: [{% for val in replies[4] %}
+                    {{ val }},
+                {% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+  
+
+const ctx_ = document.getElementById('myChart1').getContext('2d');
+    const myChart1 = new Chart(ctx_, {
+        type: '{{ dashboardtype }}',
+        data: {
+            labels: [{% for user in reposts[3]%}
+                    '{{ user }}',
+                {% endfor %}],
+            datasets: [{
+                label: 'Reposts: {{ period }}',
+                data: [{% for val in reposts[4] %}
+                    {{ val }},
+                {% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });   
+    
+    const ctx__ = document.getElementById('myChart2').getContext('2d');
+    const myChart2 = new Chart(ctx__, {
+        type: '{{ dashboardtype }}',
+        data: {
+            labels: [{% for user in likes[3] %}
+                    '{{ user }}',
+                {% endfor %}],
+            datasets: [{
+                label: 'Likes: {{ period }}',
+                data: [{% for val in likes[4] %}
+                    {{ val }},
+                {% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });    
+    
+    const ctx___ = document.getElementById('myChart3').getContext('2d');
+    const myChart3 = new Chart(ctx___, {
+        type: '{{ dashboardtype }}',
+        data: {
+            labels: [{% for user in views[3] %}
+                    '{{ user }}',
+                {% endfor %}],
+            datasets: [{
+                label: 'Views: {{ period  }}',
+                data: [{% for val in views[4] %}
+                    {{ val }},
+                {% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });   
+</script>
+{% endblock %}

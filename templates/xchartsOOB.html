@@ -1,37 +1,33 @@
-{% extends 'base.html' %}
-<!--{% import 'bootstrap/wtf.html' as wtf %}-->
 
-{% block title %}
-Title
-{% endblock %}
-
-{% block app_context %}
-<div class="row">
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Chart.js example</title>
+  </head>
+  <div class="row">
     <div class="col-md-4">        
-        <h2>Results 1</h2>
+        <h2>Replies {{period}}</h2>
         <canvas id="myChart" width="200" height="200"></canvas>
     </div>
     <div class="col-md-4">
-        <h2>Results 2</h2>
+        <h2>Reposts {{period}}</h2>
         <canvas id="myChart1" width="200" height="200"></canvas>
     </div>
 </div>
 <div class="row">
     <div class="col-md-4">        
-        <h2>Results 3</h2>
+        <h2>Likes {{period}}</h2>
         <canvas id="myChart2" width="200" height="200"></canvas>
     </div>
     <div class="col-md-4">
-        <h2>Results 4</h2>
+        <h2>Views {{period}}</h2>
         <canvas id="myChart3" width="200" height="200"></canvas>
     </div>
 </div>
-
-{% endblock %}
-
-{% block app_scripts %}
-{{ super() }}
-<script>
+   
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
         type: '{{ dashboardtype }}',
@@ -40,7 +36,7 @@ Title
                     '{{ user }}',
                 {% endfor %}],
             datasets: [{
-                label: '{{ dashboardname }}',
+                label: 'Replies: {{ period }}',
                 data: [{% for val in replies[4] %}
                     {{ val }},
                 {% endfor %}],
@@ -80,7 +76,7 @@ Title
                     '{{ user }}',
                 {% endfor %}],
             datasets: [{
-                label: '{{ dashboardname }}',
+                label: 'Reposts: {{ period }}',
                 data: [{% for val in reposts[4] %}
                     {{ val }},
                 {% endfor %}],
@@ -120,7 +116,7 @@ Title
                     '{{ user }}',
                 {% endfor %}],
             datasets: [{
-                label: '{{ dashboardname }}',
+                label: 'Likes: {{ period }}',
                 data: [{% for val in likes[4] %}
                     {{ val }},
                 {% endfor %}],
@@ -160,7 +156,7 @@ Title
                     '{{ user }}',
                 {% endfor %}],
             datasets: [{
-                label: '{{ dashboardname }}',
+                label: 'Views: {{ period  }}',
                 data: [{% for val in views[4] %}
                     {{ val }},
                 {% endfor %}],
@@ -193,4 +189,6 @@ Title
     });    
   
 </script>
-{% endblock %}
+
+</html>
+  

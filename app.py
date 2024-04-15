@@ -1,11 +1,77 @@
+from datetime import date, datetime, timedelta
 from flask import Flask, render_template, jsonify, request, request, redirect, url_for, flash
 from database import engine, load_jobs_from_db, load_job_from_db, add_application_to_db
-from xpost import engine, load_xposts_users_between_dates_from_db, load_xposts_users_onemonth_from_db, load_xposts_data_interval_from_db,load_xposts_users_interval_from_db, load_all_xposts_from_db,load_yesterday_xposts_from_db, load_within_week_xposts_from_db, load_within_month_xposts_from_db, load_within_year_xposts_from_db
+from xpost import engine, load_records_day_top_ten, load_xposts_users_onemonth_from_db, load_xposts_data_interval_from_db,load_xposts_users_interval_from_db, load_all_xposts_from_db,load_yesterday_xposts_from_db, load_within_week_xposts_from_db, load_within_month_xposts_from_db, load_within_year_xposts_from_db,load_records_from_chart_table
 from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
+@app.route("/base")
+def hello_base():
+    return render_template('base.html')   
+
+@app.route("/charts/daily/<period>")
+def chart_xpost_daily(period):
+  print("Period: ",period)
+  format = '%Y-%m-%d'
+  periods = []
+  number = 1
+  while number < 11:
+    prevDate = date.today()-timedelta(days = number)
+    periods.append(prevDate.strftime(format))
+    number = number + 1
+
+  if period == "0" or period == "1"  or period == "1"  or period == "2" or period == "3" or period == "4" or period == "5" or period == "6" or period == "7" or period == "8" or period == "9":
+     period = periods[int(period)]
+  if len(period) == 3:
+     period = (date.today()-timedelta(days = 1)).strftime(format)    
+  try:   
+    periodObj = datetime.strptime(period, '%Y-%m-%d').date()
+    nextDayObj = periodObj + timedelta(days=1)    
+  except Exception as e:
+    print("Error Unable to convert: ",str(e))  
+  #print(nextDayObj)
+  
+  toptenposts = []
+  toptenposts = load_records_day_top_ten(sinceDate=periodObj) 
+  xposts = [] 
+  xposts = load_records_from_chart_table(chartType='daily', sinceDate=periodObj, untilDate=nextDayObj)
+  dashboardname = 'Leading Posters for '+period  
+  dashboardtype = 'bar' 
+  replies = []
+  reposts = []
+  likes = []
+  views = []
+  for xpost in xposts:
+    if xpost[2] == 'replies':
+      replies = xpost
+    if xpost[2] == 'reposts':
+      reposts = xpost 
+    if xpost[2] == 'likes':
+      likes = xpost
+    if xpost[2] == 'views':
+      views = xpost  
+  #X Users list
+  users = " ".join(str(x) for x in views[3])   
+  print("Users: ", users)  
+  return render_template('xcharts.html', 
+                         replies=replies, 
+                         reposts=reposts, 
+                         likes=likes,
+                         views=views, 
+                         period = period,
+                         periods = periods,
+                         users = users,
+                         toptenposts = toptenposts,
+                         dashboardname=dashboardname, 
+                         dashboardtype=dashboardtype)
+
+@app.route('/x', methods=['GET', 'POST'])
+def xcall():
+  format = '%Y-%m-%d'
+  period = (date.today()-timedelta(days = 1)).strftime(format)
+  return redirect(url_for('chart_xpost_daily', period=period))
 
 @app.route('/test', methods=['GET', 'POST'])
 def index():
@@ -57,6 +123,10 @@ def hello_monitor():
     allxposts = load_all_xposts_from_db
     return render_template('home.html', posts=allxposts,company_name='Somewa')
 
+@app.route("/test2")
+def hello_mangalani():
+    return render_template('test2.html')
+
 @app.route("/chartexample")
 def chart_example():
     return render_template('chartexample.html')
@@ -87,7 +157,7 @@ def chart_xpost_interval():
    dashboardname = 'Leading Likes in the past 7 days'  
    dashboardtype = 'bar' 
    _tag = 'tag'
-   _field = 'likes_count'
+   _field = 'likes'
    _interval = '1 week'
    _xpostusers = load_xposts_users_interval_from_db(_tag, _interval)
    print(_xpostusers)   
