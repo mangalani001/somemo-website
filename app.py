@@ -9,11 +9,15 @@ bootstrap = Bootstrap(app)
 
 @app.route("/base")
 def hello_base():
-    return render_template('base.html')   
+    return render_template('base.html')
 
-@app.route("/charts/daily/<period>")
+@app.route('/companyprofile.html', methods=['GET', 'POST'])
+def company_profile():
+    return render_template('companyprofile.html')     
+
+@app.route('/charts/daily/<period>')
 def chart_xpost_daily(period):
-  print("Period: ",period)
+#  print("Period: ",period)
   format = '%Y-%m-%d'
   periods = []
   number = 1
@@ -21,7 +25,7 @@ def chart_xpost_daily(period):
     prevDate = date.today()-timedelta(days = number)
     periods.append(prevDate.strftime(format))
     number = number + 1
-
+  
   if period == "0" or period == "1"  or period == "1"  or period == "2" or period == "3" or period == "4" or period == "5" or period == "6" or period == "7" or period == "8" or period == "9":
      period = periods[int(period)]
   if len(period) == 3:
@@ -31,8 +35,7 @@ def chart_xpost_daily(period):
     nextDayObj = periodObj + timedelta(days=1)    
   except Exception as e:
     print("Error Unable to convert: ",str(e))  
-  #print(nextDayObj)
-  
+  #print(nextDayObj)  
   toptenposts = []
   toptenposts = load_records_day_top_ten(sinceDate=periodObj) 
   xposts = [] 
@@ -43,18 +46,29 @@ def chart_xpost_daily(period):
   reposts = []
   likes = []
   views = []
+  repliescon = []
+  repostscon = []
+  likescon = []
+  viewscon = []
   for xpost in xposts:
     if xpost[2] == 'replies':
-      replies = xpost
+      replies = xpost    
+      for i in range(len(xpost[3])):
+         repliescon.append(str(xpost[3][i])+' '+str(xpost[4][i]))
     if xpost[2] == 'reposts':
       reposts = xpost 
+      for i in range(len(xpost[3])):
+         repostscon.append(str(xpost[3][i])+' '+str(xpost[4][i]))
     if xpost[2] == 'likes':
       likes = xpost
+      for i in range(len(xpost[3])):
+         likescon.append(str(xpost[3][i])+' '+str(xpost[4][i]))
     if xpost[2] == 'views':
       views = xpost  
+      for i in range(len(xpost[3])):
+         viewscon.append(str(xpost[3][i])+' '+str(xpost[4][i]))        
   #X Users list
-  users = " ".join(str(x) for x in views[3])   
-  print("Users: ", users)  
+  users = " ".join(str(x) for x in views[3])
   return render_template('xcharts.html', 
                          replies=replies, 
                          reposts=reposts, 
@@ -63,6 +77,10 @@ def chart_xpost_daily(period):
                          period = period,
                          periods = periods,
                          users = users,
+                         repliescon = repliescon,
+                         repostscon = repostscon,
+                         likescon = likescon,
+                         viewscon =viewscon,
                          toptenposts = toptenposts,
                          dashboardname=dashboardname, 
                          dashboardtype=dashboardtype)

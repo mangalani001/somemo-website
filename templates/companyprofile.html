@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+<!--{% import 'bootstrap/wtf.html' as wtf %}-->
+
+{% block breadcrumb %}
+{{ super() }}
+Company Profile
+{% endblock%}
+
+{% block main %}
+{{ super() }}
+
+<div class="row">
+    <div class="col-md-12"> 
+        <div class="card" style="width: 100%;">
+        <!--    <img src="/../static/images/X.png" class="card-img-top" alt="Twitter"> -->
+            <div class="card-body">
+                              
+              <p class="card-text">AI-Media's Watch/Monitor service grants access to the most influential social media accounts in South Africa (SA), collectively amassing over 30 million daily impressions/engagements. These accounts are carefully chosen based on post frequency and the resulting impressions.
+
+                Our monitoring bots concentrate solely on accounts that maintain a minimum of 4 posts per day and at least 30 posts per week.
+                
+                Scroll down to explore a myriad of statistics and comparisons for these posts.</p>
+              
+            </div>
+        </div>
+    </div>           
+</div>
+{% endblock %}
+
+{% block app_scripts %}
+{{ super() }}
+
+
+{% endblock %}
