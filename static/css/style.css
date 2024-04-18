@@ -161,7 +161,9 @@ ul {
     height: 30px;	
     overflow: hidden;
     position: relative;
-    background: rgb(0, 204, 255);
+   /* background: rgb(0, 204, 255);
+    color: white;*/
+    background: white;
     color: white;
     border: 1px solid rgb(5, 4, 0);
    }

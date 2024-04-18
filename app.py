@@ -57,16 +57,16 @@ def chart_xpost_daily(period):
          repliescon.append(str(xpost[3][i])+' '+str(xpost[4][i]))
     if xpost[2] == 'reposts':
       reposts = xpost 
-      for i in range(len(xpost[3])):
-         repostscon.append(str(xpost[3][i])+' '+str(xpost[4][i]))
+      for y in range(len(xpost[3])):
+         repostscon.append(str(xpost[3][y])+' '+str(xpost[4][y]))
     if xpost[2] == 'likes':
       likes = xpost
-      for i in range(len(xpost[3])):
-         likescon.append(str(xpost[3][i])+' '+str(xpost[4][i]))
+      for x in range(len(xpost[3])):
+         likescon.append(str(xpost[3][x])+' '+str(xpost[4][x]))
     if xpost[2] == 'views':
       views = xpost  
-      for i in range(len(xpost[3])):
-         viewscon.append(str(xpost[3][i])+' '+str(xpost[4][i]))        
+      for z in range(len(xpost[3])):
+         viewscon.append(str(xpost[3][z])+' '+str(xpost[4][z]))        
   #X Users list
   users = " ".join(str(x) for x in views[3])
   return render_template('xcharts.html', 

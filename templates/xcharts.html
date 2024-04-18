@@ -17,14 +17,23 @@ Twitter - Charts below showing the highest posts, by top users, on {{period}}.
             </button>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='0')}}">{{periods[0]}}</a></li>
+                <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='1')}}">{{periods[1]}}</a></li>
+                <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='2')}}">{{periods[2]}}</a></li>
+                <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='3')}}">{{periods[3]}}</a></li>
+                <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='4')}}">{{periods[4]}}</a></li>
+                <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='5')}}">{{periods[5]}}</a></li>
+                <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='6')}}">{{periods[6]}}</a></li>
+                <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='7')}}">{{periods[7]}}</a></li>
+                <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='8')}}">{{periods[8]}}</a></li>
+                <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ url_for('chart_xpost_daily', period='9')}}">{{periods[9]}}</a></li>
             </ul>
           </div>  
@@ -59,9 +68,9 @@ Twitter - Charts below showing the highest posts, by top users, on {{period}}.
                                     Replies 
                                 </td>
                                 <td class="table-primary">
-                                    {% for likes in repliescon %}
-                                        {% if likes.startswith('@ChrisExcel102') %}
-                                            {{likes.replace("@ChrisExcel102","")}}
+                                    {% for reply in repliescon %}
+                                        {% if reply.startswith('@ChrisExcel102') %}
+                                            {{reply.replace("@ChrisExcel102","")}}
                                         {% endif %}
                                     {% endfor %}
                                 </td>
@@ -71,9 +80,9 @@ Twitter - Charts below showing the highest posts, by top users, on {{period}}.
                                     Reposts 
                                 </td>
                                 <td class="table-primary">
-                                    {% for likes in repostscon %}
-                                        {% if likes.startswith('@ChrisExcel102') %}
-                                            {{likes.replace("@ChrisExcel102","")}}
+                                    {% for repost in repostscon %}
+                                        {% if repost.startswith('@ChrisExcel102') %}
+                                            {{repost.replace("@ChrisExcel102","")}}
                                         {% endif %}
                                     {% endfor %}
                                 </td>
@@ -83,9 +92,9 @@ Twitter - Charts below showing the highest posts, by top users, on {{period}}.
                                     Likes 
                                 </td>
                                 <td class="table-primary">
-                                    {% for likes in likescon %}
-                                        {% if likes.startswith('@ChrisExcel102') %}
-                                            {{likes.replace("@ChrisExcel102","")}}
+                                    {% for like in likescon %}
+                                        {% if like.startswith('@ChrisExcel102') %}
+                                            {{like.replace("@ChrisExcel102","")}}
                                         {% endif %}
                                     {% endfor %}
                                 </td>
@@ -95,9 +104,9 @@ Twitter - Charts below showing the highest posts, by top users, on {{period}}.
                                     Views 
                                 </td>
                                 <td class="table-primary">
-                                    {% for likes in viewscon %}
-                                        {% if likes.startswith('@ChrisExcel102') %}
-                                            {{likes.replace("@ChrisExcel102","")}}
+                                    {% for view in viewscon %}
+                                        {% if view.startswith('@ChrisExcel102') %}
+                                            {{view.replace("@ChrisExcel102","")}}
                                         {% endif %}
                                     {% endfor %}
                                 </td>
